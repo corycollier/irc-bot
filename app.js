@@ -1,4 +1,5 @@
 var Cory    = require('./app/Cory')
+  , clc    = require('cli-color')
   , irc     = require('irc')
   , config  = require('./etc/config')
   , request = require('request')
