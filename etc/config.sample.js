@@ -8,6 +8,14 @@ var config = {
     from : ''
     to   : ''
   }
+
+  // , auth: {
+  //     url      : '',
+  //     formData : {
+  //       username: '',
+  //       password: ''
+  //     }
+  //   }
 };
 
 module.exports = config;

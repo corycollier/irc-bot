@@ -3,7 +3,8 @@ var sut
   , result, expected, input, value, values
   , Cory  = require('../../app/Cory')
   , using = require('jasmine-data-provider')
-  , html  = require('../fixtures/html');
+  , html  = require('../fixtures/html')
+  , config = require('../../etc/config')
 ;
 
 describe('A Cory object', function() {
@@ -16,7 +17,7 @@ describe('A Cory object', function() {
 
   describe('Cory.isValid works', function(){
     describe('handles good values', function(){
-      using(['#wall stuff', '#wall other'], function(value){
+      using([config.match + ' stuff', config.match + '  other'], function(value){
         it('returns true when it should', function(){
           result   = sut.isValid(value);
           expect(result).toEqual(true);

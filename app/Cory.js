@@ -10,6 +10,36 @@ function Cory ( ) {
 
 }
 
+/**
+ * determines if the application has the requirements to authenticate with the site
+ * @return {Boolean} true if it can, false if not
+ */
+Cory.prototype.canAuthenticate = function ( ) {
+  'use strict';
+  if (config.auth) {
+    if (config.auth.url) {
+      if (config.auth.formData) {
+        return true;
+      }
+    }
+  }
+  return false;
+};
+
+/**
+ * gets the options for authentication
+ * @return {Object} an object literal representing the request options
+ */
+Cory.prototype.getAuthOptions = function (cookieJar){
+  'use strict';
+  return {
+    url      : config.auth.url,
+    method   : 'POST',
+    jar      : cookieJar,
+    formData : config.auth.formData
+  };
+};
+
 
 /**
  * returns if the text provided matches what we're concerned with
@@ -84,8 +114,8 @@ Cory.prototype.getLink = function (body) {
  * @return {String} the resulting url to use for finding html
  */
 Cory.prototype.getUrl = function (text) {
-  var link
-    , url = config.getUrl.url
+  'use strict';
+  var url = config.getUrl.url
     , parts = text.split(' ')
     , link  = url.replace(config.getUrl.regex, parts[1])
   ;
