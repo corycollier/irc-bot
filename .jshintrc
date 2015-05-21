@@ -1,0 +1,9 @@
+{
+  "laxcomma"      : true,
+  "strict"        : true,
+  "node"          : true,
+  "curly"         : true,
+  "loopfunc"      : true,
+  "maxlen"        : 100,
+  "maxcomplexity" : 5
+}
