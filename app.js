@@ -26,3 +26,5 @@ bot.addListener('message', function(from, to, text, message) {
     }
   });
 });
+
+console.log(clc.green('started'));
