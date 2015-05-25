@@ -96,7 +96,7 @@ Cory.prototype.matched = function(from, text, link) {
 Cory.prototype.getLink = function (body) {
   'use strict';
   var index   = 1
-    , matches = body.match(/http:\/\/alpha.wallhaven.cc\/wallpaper\/(\d+)/g)
+    , matches = body.match(config.getLink.regex)
   ;
   matches = _.map(matches, function(url){
     url = url.replace(config.getLink.from, config.getLink.to);
@@ -106,7 +106,6 @@ Cory.prototype.getLink = function (body) {
   index = Math.floor(Math.random() * matches.length);
 
   return matches[index];
-
 };
 
 /**
@@ -120,7 +119,21 @@ Cory.prototype.getUrl = function (text) {
     , link  = url.replace(config.getUrl.regex, parts[1])
   ;
 
+  if (parts[2]) {
+    link = link + parts[2];
+  }
+
+  console.log(link);
+
   return link;
+};
+
+/**
+ * gets the DSN from a given config object
+ */
+Cory.prototype.getDsn = function (config) {
+  'use strict';
+  return 'mongodb://' + config.db.host + '/' + config.db.name;
 };
 
 // export the functionality

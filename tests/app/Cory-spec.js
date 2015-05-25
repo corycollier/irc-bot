@@ -60,10 +60,38 @@ describe('A Cory object', function() {
       using(values, function(value){
         it('gets a url when it should', function(){
           result   = sut.getUrl(value);
-          expect(result).not.toBe( );
+          expect(result).not.toBe(null);
           expect(typeof result).toEqual('string');
         })
       });
+    });
+  });
+
+  describe('Cory.getDsn works', function(){
+    describe('handles good valeus', function(){
+      values = [
+        {
+          db : {
+            user : 'wall-bot',
+            pass : 'wall-bot-db-password',
+            host : 'localhost',
+            port : 27017,
+            name : 'wallbot',
+          },
+        }
+      ];
+
+      using(values, function(value){
+        it('gets a legit dsn value', function(){
+          result = sut.getDsn(value);
+          expect(result).not.toBe(null);
+          expect(result).not.toBe(false);
+          expect(typeof result).toEqual('string');
+        })
+      });
+    });
+    describe('handles bad values', function(){
+
     });
   });
 
