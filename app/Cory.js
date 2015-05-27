@@ -46,8 +46,12 @@ Cory.prototype.getAuthOptions = function (cookieJar){
  * @param  {String}  text the text of the message
  * @return {Boolean}      true if it matches, false it not
  */
-Cory.prototype.isValid = function (text) {
+Cory.prototype.isValid = function (to, text) {
   'use strict';
+  if (to.indexOf(config.botName) < 0) {
+    return false;
+  }
+  
   if (! text || text.search(config.match) < 0) { 
     return false; 
   }

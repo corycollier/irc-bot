@@ -39,7 +39,13 @@ bot.addListener('message', function(from, to, text, message) {
       }
   ;
 
-  if (! cory.isValid(text)) {
+  console.log({
+    from : from,
+    to   : to,
+    text : text
+  });
+
+  if (! cory.isValid(to, text)) {
     return cory.skipped(from, text);
   }
 
@@ -47,7 +53,8 @@ bot.addListener('message', function(from, to, text, message) {
     link = cory.getLink(body);
     cory.matched(from, text, link);
     for (index in config.channels) {
-      bot.say(config.channels[index], link);
+      // bot.say(config.channels[index], link);
+      bot.say(from, link);
     }
 
     doc = new Document({image : link, url : url});
